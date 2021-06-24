@@ -1,6 +1,7 @@
 # Function to do variation partitioning of simpson turnover into
 # variation explained by all environmental variables and
 # all spatial variables
+# Author: Katherine Hébert
 
 VP <- function(bsim, env, fract.names, metaname, ses){
   

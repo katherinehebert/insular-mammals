@@ -1,16 +1,17 @@
-# Script to plot pool diversity
+# Script to make violin plot to describe the variation and mean of island-specific
+# pool diversity per island system 
+# Makes figure: perpooldiversity.png (Supplementary Material)
+# Author: Katherine Hébert
 
 # load libraries
 library(ggplot2)
 library(patchwork)
 
-# load beta-diversity result
-beta <- readRDS("~/Documents/GitHub/IslandMammals/data/beta_phylo.RDS")
-# prep data
-source('~/Documents/GitHub/IslandMammals/scripts/lmm_fullworkflow_prepdata.R')
+# load pool diversity output
+perisland_pool <- readRDS("~/Documents/GitHub/IslandMammals/data/pool_perisland_diversity.RDS")
 
-
-# update (re-do!) SES plot
+# function to make a violin plot to describe the variation and mean of island-specific
+# pool diversity per island system
 plot_div <- function(df, pooldiv){
 
   # order groups to match other plots
@@ -31,11 +32,16 @@ plot_div <- function(df, pooldiv){
   return(p)
 }
 
-a<-plot_div(perisland_pool, "sp_rich") + 
+
+# make the plots
+a <- plot_div(perisland_pool, "sp_rich") +  
   labs(y = "Species richness")
-b<-plot_div(perisland_pool, "sesmpd") + 
+b <- plot_div(perisland_pool, "sesmpd") +  
   labs(y = "sesMPD") +
   geom_hline(yintercept = 0, lty = 2, col = "grey70")
 
+# put them together using patchwork
 a / b + plot_annotation(tag_levels = "a")
+
+# save!
 ggsave("figs/perpooldiversity.png")

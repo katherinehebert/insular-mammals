@@ -1,10 +1,12 @@
-# Script to map regional pools
+# Script to map regional pools in Figure 1 (speciespools_map.png) 
+# The regional pools are produced with MAKE_regionalpool.R
 # Author: Katherine Hébert
 
 # set up ----
 library(sf)
 library(ggplot2)
 library(dplyr)
+
 # get world map
 library("rnaturalearth")
 library("rnaturalearthdata")
@@ -37,7 +39,7 @@ read_clean <- function(path){
 
 # get archipelago polygons
 # these are clipped polygons of the island shapes
-# extracted from the GADM shapefiles in QGIS
+# extracted from GADM shapefiles in QGIS
 adr_arch <- read_clean("qgis/outputs/islands/adr_islands.shp")
 alx_arch <- read_clean("qgis/outputs/islands/alx_islands.shp")
 clf_arch <- read_clean("qgis/outputs/islands/clf_islands.shp")

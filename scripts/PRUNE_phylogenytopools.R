@@ -15,6 +15,7 @@ require(phytools)
 # import phylogenetic tree
 phy.fritz <- read.nexus("data/raw/Phylogeny/ELE_1307_sm_SA1.nexus")[[1]] # "best dates" tree
 
+# import list of species per island source pools
 pool <- readRDS("output/pool_perisland_specieslists.RDS")
 
 # import phylogeny pool species synonyms (found manually on ITIS and IUCN)

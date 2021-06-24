@@ -1,4 +1,5 @@
 # Functions to make plots for lmm building and validation
+# Author: Katherine Hébert
 
 # Map residual values in space
 resid_map <- function(model, data = perisland){

@@ -1,3 +1,8 @@
+# Function to sequentially remove highly correlated variables sequentially according to
+# their variance inflation factor being over a given threshold
+# Author: Katherine Hébert
+
+
 removeVIF <- function(commdist, env){
 
 for(i in 1:ncol(env)){

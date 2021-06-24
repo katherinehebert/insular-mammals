@@ -1,21 +1,27 @@
-# Taxonomic, functional, and phylogenetic diversity in the species pools
-
-# clear workspace
-rm(list=ls())
+# Script to calculate the phylogenetic diversity (sesMPD) of the island-specific
+# and regional source pools
+# Author: Katherine Hébert
 
 # load packages
 require(vegan)
 require(picante)
 require(dplyr)
 
-## TAXONOMIC DATA ##
+# load data --------------------------------------------------------------------
+
+# load species lists for each island's source pools
 pool_sp <- readRDS("output/pool_perisland_specieslists.RDS")
 names(pool_sp) <- c("Adr", "Alx", "Clf", "Snd", "MdtLB", "MdtOC", "Mlk", "Mln", "Phl")
-# PHYLOGENETIC DATA ##
+
+# load phylogenies pruned to each island's source pool
 pool_phy <- readRDS("output/pool_perisland_phylogenies.RDS")
 names(pool_phy) <- c("Adr", "Alx", "Clf", "Snd", "MdtLB", "MdtOC", "Mlk", "Mln", "Phl")
 
-# TREE: Full mammalian phylogenetic tree
+# load regional source pools
+regpool <- readRDS("output/regionalpool_25p_specieslists.RDS")
+names(regpool) <- c("Adr","Alx", "Clf", "Snd", "MdtLB", "MdtOC", "Mlk", "Mln", "Phl")
+
+# load full mammalian phylogenetic tree
 phy.fritz <- read.tree("data/raw/Phylogeny/ELE_1307_sm_SA1_EDITTED.nexus")
 # remove duplicated species
 phy.fritz <- drop.tip(phy.fritz, phy.fritz$tip.label[which(duplicated(phy.fritz$tip.label))])
@@ -25,8 +31,10 @@ data(chiroptera)
 phy.fritz <- drop.tip(phy.fritz, tip = chiroptera$tip.label)
 
 
-#### Phylogenetic diversity ####
+# function ----------------------------------------------------------------------
 
+# make function to calculate sesMPD of a pool with a list of species and a 
+# phylogenetic tree
 calc_sesmpd <- function(pool_species, phy = phy.fritz){
   
   # Creating one "community" matrix for the phylogeny pool
@@ -50,6 +58,8 @@ calc_sesmpd <- function(pool_species, phy = phy.fritz){
   return(SESMPD)
 }
 
+# calculate sesMPD -------------------------------------------------------------
+
 # get sesmpd of each island's pool
 pool_phydiv <- vector("list", length = length(pool_sp))
 for(i in 2:length(pool_sp)){
@@ -63,24 +73,10 @@ for(i in 2:length(pool_sp)){
           paste0("output/pool_perisland_sesmpd_", names(pool_sp)[i], ".RDS"))
 }
 
-# get regional pool sesmpd (25p cutoff)
-regpool <- readRDS("output/regionalpool_25p_specieslists.RDS")
-names(regpool) <- c("Adr","Alx", "Clf", "Snd", "MdtLB", "MdtOC", "Mlk", "Mln", "Phl")
-
+# get regional pool sesmpd
 regpool_phydiv <- vector("list", length = length(regpool))
 for(i in 1:length(regpool_phydiv)){
     temp <- calc_sesmpd(pool_species = regpool[[i]], phy = phy.fritz)
   saveRDS(temp, 
           paste0("output/regionalpool_25p_sesmpd_", names(regpool)[i], ".RDS"))
-}
-
-# get regional pool sesmpd (50p cutoff)
-regpool <- readRDS("output/regionalpool_50p_specieslists.RDS")
-names(regpool) <- c("Adr","Alx", "Clf", "Snd", "MdtLB", "MdtOC", "Mlk", "Mln", "Phl")
-
-regpool_phydiv <- vector("list", length = length(regpool))
-for(i in 1:length(regpool_phydiv)){
-  temp <- calc_sesmpd(pool_species = regpool[[i]], phy = phy.fritz)
-  saveRDS(temp, 
-          paste0("output/regionalpool_50p_sesmpd_", names(regpool)[i], ".RDS"))
 }

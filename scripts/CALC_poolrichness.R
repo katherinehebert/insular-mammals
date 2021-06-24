@@ -1,4 +1,4 @@
-# Script to get taxonomic and phylogenetic diversity of the per-island pools
+# Script to assemble the taxonomic and phylogenetic diversity of the per-island pools
 # Author: Katherine Hébert
 
 library(dplyr)
