@@ -23,11 +23,7 @@ Hébert, Katherine; Millien, Virginie; Lessard, Jean-Philippe (2022), Source poo
 
 <details>
 
-<summary>
-
-Click to read!
-
-</summary>
+<summary>  Click to read! </summary>
 
 1.  **Aim:** Islands have been the test bed of several theories in community ecology, bio-geography, and evolutionary biology. Progress within these disciplines has given a more comprehensive and mechanistic understanding of the processes governing variation in species richness among islands. However, it remains unclear whether these same processes also explain variation in species and phylogenetic composition among islands. Integrating theory from ecology and biogeography, we infer the roles of dispersal, selection, and stochasticity on the composition of insular assemblages within archipelagos. We further assess the influence of source pool diversity and connectivity on the compositional uniqueness of insular assemblages.
 2.  **Location:** Island systems worldwide. 
