@@ -36,16 +36,16 @@ Hébert, Katherine; Millien, Virginie; Lessard, Jean-Philippe (2022), Source poo
 
 ## What the scripts do
 
-### Descriptive plots 
+### 1. Descriptive plots 
 
 -   `FIG_envPCA.R` and `FIG_env_violin.R` create plots to describe the environmental conditions within and among island systems. The resulting plots are in the Supplementary Material.
 
-### Variation partitioning
+### 2. Variation partitioning
 
 -   `FUN_VP.R` is a function used to do variation partitioning, check significance of fractions, and format the outputs into a useful table
 -   `FUN_removeVIF.R` is a function that can be used with the `VP` function to remove highly correlated variables according to variance inflation factors 
 
-### Source pools
+### 3. Source pools
 
 #### Delineating the source pools
 
@@ -67,7 +67,7 @@ Hébert, Katherine; Millien, Virginie; Lessard, Jean-Philippe (2022), Source poo
 -   `FIG_perpooldiversity.R` creates a violin plot of island source pools grouped by island system (`perpooldiversity.png` in Supplementary Material)
 
 
-### Linear mixed models
+### 4. Linear mixed models
 
 -   `lmm_fullworkflow_plotfunctions.R` contains several plotting functions to validate the models and visualize their results  
 -   `lmm_fullworkflow_prepdata.R` prepares the datasets for the following two scripts
